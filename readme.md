@@ -16,12 +16,12 @@ in separate terminal start test
 
 ![test1](docs/test1.png)
 
-works fine since `class B` is cached in gunicorn worker's memory. Therefore `self`
+Works fine since `class B` is cached by `lru_cache` in gunicorn worker's memory per worker. Therefore `self`
 parameter in `foo` is never different which allows the `TTLCache` work correctly.
 
 ## test2: no LRU just TTL in class
 
-![test2](docs/test3.png)
+![test2](docs/test2.png)
 
 Since `class B` is constructed and stored for each separate API hit and cache works
 based on method parameters from which one is `self` (always different) this solution can

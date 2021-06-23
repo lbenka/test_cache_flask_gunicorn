@@ -31,16 +31,15 @@ class B:
 @lru_cache(maxsize=5)
 def class_factory():
     client = B()
-    print(client)
     return client
 
 
 def main():
-    a = class_factory().foo()[:10]
-    # print(class_factory.cache_info())
-
     print(f"pid: {os.getpid()}")
-    return a
+    a = class_factory()
+    # print(class_factory.cache_info())
+    print(a)
+    return a.foo()[:10]
 
 
 def main2():
@@ -56,7 +55,8 @@ def main3():
     print(b)
     return b.foo2()[:10]
 
-## app here ## 
+
+## app here ##
 app = Flask(__name__)
 
 
